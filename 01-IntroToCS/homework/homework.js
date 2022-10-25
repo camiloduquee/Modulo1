@@ -14,9 +14,18 @@ let NewArr = [];
 
 function DecimalABinario(num) {
   // tu codigo aca
-
+  let arr = [];
+    while(num > 0){
+        if(num%2 == 0){
+            arr = 0 + arr;
+        }
+        else{
+          arr = 1 + arr;
+        }
+        num = Math.floor(num/2);
+    }
+    return arr;
 }
-
 
 module.exports = {
   BinarioADecimal,
