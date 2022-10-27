@@ -45,11 +45,12 @@ function cacheFunction(cb) {
   */
   let cache = {};
   return function(arg){
-    if(!cache.hasOwnProperty(arg)){
-      cache[arg] = cb(arg);
+    if(cache.hasOwnProperty(arg)){
+      return cache[arg];
     }
+    cache[arg]=cb(arg);
     return cache[arg];
-  }
+  };
 }
 
 // Bind
@@ -100,13 +101,13 @@ let textoGuiones;
 let textoUnderscore;
 
 //pasamos this como null y nuestros 3 argumentos que nos pide la funcion crear cadena,recordar que bind es una funcion de enlace
-textoAsteriscos = crearCadena.bind(null,"*","*","Hola");
+textoAsteriscos = crearCadena.bind(this,"*","*"); //la mejor practica es con this siempre
 textoAsteriscos();
 
-textoGuiones = crearCadena.bind(null,"-","-","Hola");
+textoGuiones = crearCadena.bind(null,"-","-");
 textoGuiones();
 
-textoUnderscore = crearCadena.bind(null,"_","_","Hola");
+textoUnderscore = crearCadena.bind(undefined,"_","_");
 textoUnderscore();
 // No modifiquen nada debajo de esta linea
 // --------------------------------

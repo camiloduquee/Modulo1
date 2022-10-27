@@ -1,53 +1,41 @@
-var instructor = {
-    nombre: "Franco",
-    edad: 25,
-  };
-  
-  var alumno = {
-    nombre: "Juan",
-    curso: "FullStack",
-  };
-  
-  function getNombre() {
-    return this.nombre;
-  }
-  
-  /*
-    Ejercicio 3
-  
-    IMPORTANTE: no modificar el código de arriba (variables instructor y alumno, y función getNombre)
-  
-    Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
-  */
-  
-  let getNombreInstructor;
-  let getNombreAlumno;
+function cacheFunction(cb) {
+
+  let cache = {};
     
-getNombreInstructor = getNombre.bind(instructor);
-console.log(getNombreInstructor());
+  return function(arg){
+    if(cache.hasOwnProperty(arg)){
+      return cache[arg];
+    }
+    else{
+      cache[arg]=cb(arg);
+      return cache[arg];
+      
+    }
+    
+  };
+ 
+}
 
-getNombreAlumno = getNombre.bind(alumno);
-console.log(getNombreAlumno());
-
-/*
-  Ejercicio 4
+const cb = function(x) {
+  return x * 2;
   
-  Sin modificar la función crearCadena, usar bind para guardar, en las tres variables declaradas a continuación, tres funciones que retornen una cadena (string) y el delimitador especificado (asteriscos, guiones, y guiones bajos, respectivamente). Las funciones obtenidas deberían recibir solamente un argumento - la cadena de texto - ya que los otros argumentos habrán sido "bindeados". 
-*/
+};
+const cachedFunction = cacheFunction(cb);
 
-function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
-    return delimitadorIzquierda + cadena + delimitadorDerecha;
-  }
+  var resultOne = cachedFunction(2);
+  var resultTwo = cachedFunction(3);
+  var resultThre = cachedFunction(10);
+
+  console.log(resultOne);
+  console.log(resultTwo);
+  console.log(resultThre);
+
+  console.log(cachedFunction(true));
+  console.log(cachedFunction(true));
+  console.log(cachedFunction(10));
+
   
-  let textoAsteriscos;
-  let textoGuiones;
-  let textoUnderscore;
 
-  textoAsteriscos = crearCadena.bind(null,"*","*","Hola");
-  console.log(textoAsteriscos());
 
-  textoGuiones = crearCadena.bind(null,"-","-","Hola");
-  console.log(textoGuiones());
 
-  textoUnderscore = crearCadena.bind(null,"_","_","Hola");
-  console.log(textoUnderscore());
+  
