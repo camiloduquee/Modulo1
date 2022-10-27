@@ -10,7 +10,7 @@ function counter() {
 
   Ejemplo:
   const nuevoContador = counter()
-  nuevoContador()     // 1
+  nuevoContador()     machi// 1
   nuevoContador()     // 2
   nuevoContador()     // 3
 
@@ -19,6 +19,8 @@ function counter() {
   otroContador()      // 2
   otroContador()      // 3
    */
+  var i = 0;
+  return function(){return ++i;}   
 }
 
 function cacheFunction(cb) {
@@ -41,6 +43,13 @@ function cacheFunction(cb) {
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
+  let cache = {};
+  return function(arg){
+    if(!cache.hasOwnProperty(arg)){
+      cache[arg] = cb(arg);
+    }
+    return cache[arg];
+  }
 }
 
 // Bind
@@ -70,6 +79,12 @@ function getNombre() {
 let getNombreInstructor;
 let getNombreAlumno;
 
+getNombreInstructor = getNombre.bind(instructor);
+getNombreInstructor();
+
+getNombreAlumno = getNombre.bind(alumno);
+getNombreAlumno();
+
 /*
   Ejercicio 4
   
@@ -84,6 +99,15 @@ let textoAsteriscos;
 let textoGuiones;
 let textoUnderscore;
 
+//pasamos this como null y nuestros 3 argumentos que nos pide la funcion crear cadena,recordar que bind es una funcion de enlace
+textoAsteriscos = crearCadena.bind(null,"*","*","Hola");
+textoAsteriscos();
+
+textoGuiones = crearCadena.bind(null,"-","-","Hola");
+textoGuiones();
+
+textoUnderscore = crearCadena.bind(null,"_","_","Hola");
+textoUnderscore();
 // No modifiquen nada debajo de esta linea
 // --------------------------------
 
