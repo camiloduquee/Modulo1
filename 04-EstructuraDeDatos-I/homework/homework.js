@@ -15,10 +15,45 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 
 function nFactorial(n) {
+      if(n < 0){
+        return null;
+      }
+      else if(n <= 1){
+        return 1;
+      }
+      else{
+        return n * nFactorial(n-1);
+      }
+    
 }
+//sin recursion
+// function nFibonacci(n) {
+//   var arr = [0,1];
+//       for(var i = 2; i <= n; i++ ){
+//           if(n < 0){
+//               return null;
+//           }
+//           else if(n === 1){
+//               return 1;
+//           }
+//           else{
+//               var x = arr[i-1]+arr[i-2];
+//               arr.push(x);
+//           }
+//       }
+//   return arr[n]; 
+//   }
+// con recursion
+  function nFibonacci(n) {
+    if(n===0){
+        return 0;
+    }
+    if(n===1){
+        return 1;
+    }
+    return nFibonacci(n - 1) + nFibonacci(n - 2);
+  }   
 
-function nFibonacci(n) {
-}
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
@@ -29,8 +64,32 @@ Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde e
 Pueden utilizar class o función constructora.
 */
 
-function Queue() {
+class Queue{
 
+    constructor(){
+      this.elementos = {};
+      this.cabeza = 0;
+      this.cola = 0;
+    }
+    enqueue(elemento){
+        this.elementos[this.cola] = elemento;
+        this.cola++;
+    }
+    dequeue(){
+      if(Object.entries(this.elementos).length === 0){
+        return undefined;
+      }
+      else
+      {
+        const item = this.elementos[this.cabeza];
+        delete this.elementos[this.cabeza];
+        this.cabeza++;
+        return item;
+      }  
+    }
+    size(){
+      return this.cola - this.cabeza;
+    }
 }
 
 // No modifiquen nada debajo de esta linea
