@@ -126,7 +126,7 @@ function selectionSort(array) {
         }
      }
      //Hago el swap
-     if (Nmin != i) {   
+     if (Nmin !== i) {   //esto evita que se swap con sigo  !=
          // cambio el numero menor a la posicion
          var aux = array[i]; 
          array[i] = array[Nmin];
