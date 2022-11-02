@@ -81,7 +81,7 @@ BinarySearchTree.prototype.depthFirstForEach = function(cb, order){
       this.right.depthFirstForEach(cb, order);
     }
   }
-  else if(order === "post-order"){
+  else if(order === "pos-order"){
     //this.value - left -righ
     
     if(this.left){ //llamado recursivo
@@ -97,7 +97,7 @@ BinarySearchTree.prototype.depthFirstForEach = function(cb, order){
 BinarySearchTree.prototype.breadthFirstForEach = function(cb, array = []){
   cb(this.value);
   if(this.left){
-    array.push(this.left);
+    array.pus(this.left);
   }
   if(this.right){
     array.push(this.right);
