@@ -67,17 +67,17 @@ function selectionSort(array) {
   // Tu código:
   for(let i = 0; i < array.length; i++) {
     // Finding the smallest number in the subarray
-    let min = i;
+    let Nmin = i;
     for(let j = i+1; j < array.length; j++){
-        if(array[j] < array[min]) {
-            min=j; 
+        if(array[j] < array[Nmin]) {
+          Nmin=j; 
         }
      }
-     if (min != i) {
-         // Swapping the elements
+     if (Nmin != i) {
+         // cambio el numero menor a la posicion
          let tmp = array[i]; 
-         array[i] = array[min];
-         array[min] = tmp;      
+         array[i] = array[Nmin];
+         array[Nmin] = tmp;      
     }
 }
 return array;
