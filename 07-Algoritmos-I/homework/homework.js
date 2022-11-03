@@ -24,18 +24,21 @@ function factorear(num) {
 
  var factores = [1];
  var i = 2;
+ var operaciones = 0;
  while(num !== 1){
      if(num % i === 0){
        factores.push(i);
        num = num / i;
+       operaciones ++;
      }else{
        i++;
      }
    }
+   console.log(operaciones);
    return factores;
 
 }  
-console.log(factorear(180));
+console.log(factorear(18000));
 
 function bubbleSort(array) {
   // Implementar el método conocido como bubbleSort para ordenar de menor a mayor
@@ -58,6 +61,7 @@ function bubbleSort(array) {
 
 //Compara de a dos elementos, el ultimo es el que ya queda como numero mayor
 var cambio = true; //mi bandera para saber si entra o no en el ciclo si es false ya deja de ejecutarce
+var operaciones = 0;
 while(cambio){
   cambio = false;
   for (let i = 0; i < array.length - 1; i++) { //se poone el array.length - 1 porque debe analizar el penultimo numero con el ultimo 
@@ -66,9 +70,11 @@ while(cambio){
       array[i] = array[i + 1];
       array[i + 1] = aux;
       cambio = true;
+      operaciones++;
     }
   }
 }
+console.log(operaciones); //se cumple N*N = O(N´2)
 return array;
 }
 console.log(bubbleSort([5, 1, 4, 2, 8, 9, 6, 30,7,21,10,100,3,99,12,13,55,19]));
