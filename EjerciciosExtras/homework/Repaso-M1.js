@@ -141,7 +141,7 @@ BinarySearchTree.prototype.sum = function() {
         return this.value +this.right.sum();
     }
     if(this.left && !this.right){
-        return this.value +this.left.sum();
+        return this.value +this.left.sum(); //llamado recursivo
     }
 }
 
